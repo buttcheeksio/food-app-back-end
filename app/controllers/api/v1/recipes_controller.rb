@@ -10,26 +10,30 @@ class Api::V1::RecipesController < ApplicationController
     render json: @recipes
   end
 
-  def new
-    @recipe = Recipe.new
-  end
+  # def new
+  #   @recipe = Recipe.new
+  # end
 
   def create
     @recipe = Recipe.create(recipe_params)
-
+    @selectedIngs = selected_ingredients[:ings]
+    @selectedIngs.each do |ing|
+      RecipeIngredient.create(ingredient_id: ing[:ingredient_id], amount: ing[:amount], unit: ing[:unit], recipe_id: @recipe.id)
+    end
     if @recipe.valid?
-      flash[:success] = "You successfully made a new recipe!"
-      redirect_to @recipe
-    else
-      @errors = @recipe.errors.full_messages
-      render :new
+      # flash[:success] = "You successfully made a new recipe!"
+      render json: @recipe
     end
   end
 
-private
+  private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description)
+    params.require(:new_recipe).permit(:name, :description, :directions, :vegetarian, :vegan, :gluten_free, :dairy_free, :user_id, :image)
+  end
+
+  def selected_ingredients
+    params.require(:selected_ings).permit!
   end
 
 end

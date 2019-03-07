@@ -18,7 +18,10 @@ ActiveRecord::Schema.define(version: 2019_02_20_210629) do
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
     t.string "aisle"
-    t.string "image"
+    t.string "season"
+    t.string "techniques"
+    t.string "taste"
+    t.string "tips"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -52,6 +55,7 @@ ActiveRecord::Schema.define(version: 2019_02_20_210629) do
     t.integer "ready_in_minutes"
     t.integer "number_of_servings"
     t.string "directions"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

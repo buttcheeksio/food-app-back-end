@@ -11,6 +11,7 @@ class CreateRecipes < ActiveRecord::Migration[5.2]
       t.integer :ready_in_minutes
       t.integer :number_of_servings
       t.string :directions
+      t.integer :user_id
 
       t.timestamps
     end

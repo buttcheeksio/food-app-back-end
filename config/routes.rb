@@ -10,7 +10,8 @@ Rails.application.routes.draw do
       get 'recipes', to: 'recipes#index'
       get 'user_ingredients', to: 'user_ingredients#index'
       get 'user_ingredients/:id', to: 'user_ingredients#show_users_ingredients'
-      post 'user_ingredients', to: 'user_ingredients#create_user_ingredients'
+      post 'user_ingredients', to: 'user_ingredients#create'
+      delete 'user_ingredients', to: 'user_ingredients#destroy'
     end
   end
 end

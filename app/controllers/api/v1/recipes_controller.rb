@@ -21,7 +21,6 @@ class Api::V1::RecipesController < ApplicationController
       RecipeIngredient.create(ingredient_id: ing[:ingredient_id], amount: ing[:amount], unit: ing[:unit], recipe_id: @recipe.id)
     end
     if @recipe.valid?
-      # flash[:success] = "You successfully made a new recipe!"
       render json: @recipe
     end
   end

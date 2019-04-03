@@ -13,20 +13,20 @@ class Api::V1::UserIngredientsController < ApplicationController
     @user_ingredient = Ingredient.new
   end
 
-  # def create
-  #   render json: UserIngredient.create(user_ingredient_params)
-  # end
+  def create
+    UserIngredient.create(user_id: params[:user_id], ingredient_id: params[:ingredient_id])
+    render json: User.find(params[:user_id]).ingredients
+  end
 
-  def create_user_ingredients
-    params[:ingredients_ids].map do |id|
-      UserIngredient.create(user_id: params[:user_id], ingredient_id: id)
-    end
+  def destroy
+    @user_ingredient = UserIngredient.find { |i| i[:user_id] === params[:user_id] && i[:ingredient_id] === params[:ingredient_id]}
+    @user_ingredient.destroy
     render json: User.find(params[:user_id]).ingredients
   end
 
 private
 
   def user_ingredient_params
-    params.require(:user_ingredient).permit(:user_id, :ingredients_ids)
+    params.require(:user_ingredient).permit(:user_id, :ingredient_id)
   end
 end

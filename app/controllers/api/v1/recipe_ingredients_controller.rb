@@ -4,4 +4,5 @@ class Api::V1::RecipeIngredientsController < ApplicationController
     @recipe_ingredients = RecipeIngredient.all
     render json: @recipe_ingredients
   end
+  
 end

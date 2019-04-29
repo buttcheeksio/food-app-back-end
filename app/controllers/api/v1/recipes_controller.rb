@@ -10,10 +10,6 @@ class Api::V1::RecipesController < ApplicationController
     render json: @recipes
   end
 
-  # def new
-  #   @recipe = Recipe.new
-  # end
-
   def create
     @recipe = Recipe.create(recipe_params)
     @selectedIngs = selected_ingredients[:ings]

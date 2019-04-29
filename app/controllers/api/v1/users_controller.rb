@@ -32,4 +32,4 @@ private
     params.require(:user).permit(:name, :email, :password, :avatar)
   end
 
-end # end of users_controller
+end
